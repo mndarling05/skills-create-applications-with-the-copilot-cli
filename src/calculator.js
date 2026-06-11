@@ -4,6 +4,9 @@
 // - subtraction ("-", "sub")
 // - multiplication ("*", "mul", "x")
 // - division ("/", "div")
+// - modulo ("%", "mod")
+// - power ("^", "pow")
+// - square root ("sqrt")
 
 function add(a, b) {
   return a + b;
@@ -24,6 +27,24 @@ function div(a, b) {
   return a / b;
 }
 
+function mod(a, b) {
+  if (b === 0) {
+    throw new Error('Modulo by zero');
+  }
+  return a % b;
+}
+
+function pow(a, b) {
+  return Math.pow(a, b);
+}
+
+function sqrt(a) {
+  if (a < 0) {
+    throw new Error('Square root of negative number');
+  }
+  return Math.sqrt(a);
+}
+
 function operate(op, a, b) {
   switch (op) {
     case '+':
@@ -39,9 +60,17 @@ function operate(op, a, b) {
     case '/':
     case 'div':
       return div(a, b);
+    case '%':
+    case 'mod':
+      return mod(a, b);
+    case '^':
+    case 'pow':
+      return pow(a, b);
+    case 'sqrt':
+      return sqrt(a);
     default:
       throw new Error(`Unsupported operator: ${op}`);
   }
 }
 
-module.exports = { add, sub, mul, div, operate };
+module.exports = { add, sub, mul, div, mod, pow, sqrt, operate };
